@@ -1,9 +1,22 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
+import {
+  getFirestore,
+  collection,
+  doc,
+  query,
+  where,
+  getDocs,
+  setDoc,
+} from 'firebase/firestore';
 
 // Firebase config
-const firebaseConfig = {
+const config = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
@@ -13,8 +26,16 @@ const firebaseConfig = {
 };
 
 // init Firebase
-const firebase = initializeApp(firebaseConfig);
+const app = initializeApp(config);
 
 // init services
-export const auth = getAuth(firebase);
-export const db = getFirestore(firebase);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+export const Auth = {
+  auth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+};
+export const Firestore = { db, collection, doc, query, where, getDocs, setDoc };
