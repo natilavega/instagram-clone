@@ -16,7 +16,7 @@ const LoginPage = () => {
   const isInvalid = password === '' || email === '';
 
   useEffect(() => {
-    document.title = 'Login - Instagram';
+    document.title = 'Login · Instagram';
   }, []);
 
   const handleLogin = async (e) => {

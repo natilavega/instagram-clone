@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  signOut,
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -37,5 +38,6 @@ export const Auth = {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  signOut,
 };
 export const Firestore = { db, collection, doc, query, where, getDocs, setDoc };
