@@ -26,13 +26,22 @@ const App = () => {
               path={ROUTES.DASHBOARD}
               element={
                 user ? (
-                  <DashboardPage />
+                  <DashboardPage user={user} />
                 ) : (
                   <Navigate to={ROUTES.LOGIN} replace />
                 )
               }
             />
-            <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+            <Route
+              path={ROUTES.LOGIN}
+              element={
+                !user ? (
+                  <LoginPage />
+                ) : (
+                  <Navigate to={ROUTES.DASHBOARD} replace />
+                )
+              }
+            />
             <Route path={ROUTES.SIGN_UP} element={<SignUpPage />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
           </Routes>

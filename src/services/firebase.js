@@ -33,3 +33,11 @@ export async function createUserDoc(uid, username, fullName, email) {
     dateCreated: Date.now(),
   });
 }
+
+export async function getAuthUser(userId) {
+  const usersRef = collection(db, 'users');
+  const q = query(usersRef, where('userId', '==', userId));
+  const result = await getDocs(q);
+
+  return result.docs[0].data();
+}
