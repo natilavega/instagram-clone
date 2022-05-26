@@ -96,3 +96,12 @@ export async function updateFollowedUserFollowers(
     followers: isFollowed ? arrayRemove(userId) : arrayUnion(userId),
   });
 }
+
+export async function getPhotos(userId, following) {
+  const photosRef = collection(db, 'photos');
+  const q = query(photosRef, where('userId', 'in', following));
+  const result = await getDocs(q);
+
+  const userFollowedPhotos = result.docs.map((photo) => ({ ...photo.data() }));
+  return userFollowedPhotos;
+}

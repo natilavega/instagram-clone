@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import UserContext from './context/user';
-import UseAuthListener from './hooks/useAuthListener';
+import useAuthListener from './hooks/useAuthListener';
 
 const LoginPage = lazy(() => import('./pages/loginPage'));
 const SignUpPage = lazy(() => import('./pages/signUpPage'));
@@ -15,7 +15,7 @@ const DashboardPage = lazy(() => import('./pages/dashboardPage'));
 const NotFoundPage = lazy(() => import('./pages/notFoundPage'));
 
 const App = () => {
-  const { user } = UseAuthListener();
+  const { user } = useAuthListener();
 
   return (
     <UserContext.Provider value={{ user }}>
