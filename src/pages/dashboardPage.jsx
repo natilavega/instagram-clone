@@ -3,7 +3,7 @@ import LoggedInUserContext from '../context/loggedInUser';
 import useActiveUser from '../hooks/useActiveUser';
 import Header from '../components/header';
 import Timeline from '../components/timeline';
-import Sidebar from '../components/sidebar';
+import Sidebar from '../components/sidebar/sidebar';
 
 const DashboardPage = ({ user }) => {
   const activeUser = useActiveUser(user.uid);

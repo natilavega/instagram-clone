@@ -12,8 +12,12 @@ import {
   doc,
   query,
   where,
+  limit,
   getDocs,
   setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore';
 
 // Firebase config
@@ -40,4 +44,16 @@ export const Auth = {
   updateProfile,
   signOut,
 };
-export const Firestore = { db, collection, doc, query, where, getDocs, setDoc };
+export const Firestore = {
+  db,
+  collection,
+  doc,
+  query,
+  where,
+  limit,
+  getDocs,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+};

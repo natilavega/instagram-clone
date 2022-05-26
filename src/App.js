@@ -42,7 +42,16 @@ const App = () => {
                 )
               }
             />
-            <Route path={ROUTES.SIGN_UP} element={<SignUpPage />} />
+            <Route
+              path={ROUTES.SIGN_UP}
+              element={
+                !user ? (
+                  <SignUpPage />
+                ) : (
+                  <Navigate to={ROUTES.DASHBOARD} replace />
+                )
+              }
+            />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
           </Routes>
         </Suspense>
