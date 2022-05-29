@@ -103,5 +103,33 @@ export async function getPhotos(userId, following) {
   const result = await getDocs(q);
 
   const userFollowedPhotos = result.docs.map((photo) => ({ ...photo.data() }));
-  return userFollowedPhotos;
+
+  const photosWithUserDetails = await Promise.all(
+    userFollowedPhotos.map(async (photo) => {
+      let userLikedPhoto = false;
+      if (photo.likes.includes(userId)) {
+        userLikedPhoto = true;
+      }
+
+      return { ...photo, userLikedPhoto };
+    })
+  );
+
+  return photosWithUserDetails;
+}
+
+export async function updatePhotoLikes(photoId, userId, isLiked) {
+  const photoRef = doc(db, 'photos', photoId);
+
+  await updateDoc(photoRef, {
+    likes: isLiked ? arrayRemove(userId) : arrayUnion(userId),
+  });
+}
+
+export async function addPhotoComment(photoId, displayName, comment) {
+  const photoRef = doc(db, 'photos', photoId);
+
+  await updateDoc(photoRef, {
+    comments: arrayUnion({ displayName, comment }),
+  });
 }
