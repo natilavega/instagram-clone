@@ -12,6 +12,7 @@ import useAuthListener from './hooks/useAuthListener';
 const LoginPage = lazy(() => import('./pages/loginPage'));
 const SignUpPage = lazy(() => import('./pages/signUpPage'));
 const DashboardPage = lazy(() => import('./pages/dashboardPage'));
+const ProfilePage = lazy(() => import('./pages/profilePage'));
 const NotFoundPage = lazy(() => import('./pages/notFoundPage'));
 
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
                 )
               }
             />
+            <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
           </Routes>
         </Suspense>

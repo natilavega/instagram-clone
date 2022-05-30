@@ -23,14 +23,6 @@ export const Auth = {
   signOut,
 };
 
-export async function doesUsernameExist(username) {
-  const usersRef = collection(db, 'users');
-  const q = query(usersRef, where('username', '==', username));
-  const result = await getDocs(q);
-
-  return result.docs.length > 0;
-}
-
 export async function createUser(email, password, username, fullName) {
   await createUserWithEmailAndPassword(auth, email, password).then(() => {
     updateProfile(auth.currentUser, {
@@ -54,12 +46,40 @@ export async function createUserDoc(uid, username, fullName, email) {
   });
 }
 
-export async function getAuthUser(userId) {
+export async function doesUsernameExist(username) {
+  const usersRef = collection(db, 'users');
+  const q = query(usersRef, where('username', '==', username));
+  const result = await getDocs(q);
+
+  return result.docs.length > 0;
+}
+
+export async function getUserByUsername(username) {
+  const usersRef = collection(db, 'users');
+  const q = query(usersRef, where('username', '==', username));
+  const result = await getDocs(q);
+
+  return result.docs.length > 0 ? result.docs[0].data() : false;
+}
+
+export async function getUserById(userId) {
   const usersRef = collection(db, 'users');
   const q = query(usersRef, where('userId', '==', userId));
   const result = await getDocs(q);
 
   return result.docs[0].data();
+}
+
+export async function isUserFollowingProfile(loggedInUserId, profileUserId) {
+  const usersRef = collection(db, 'users');
+  const q = query(
+    usersRef,
+    where('userId', '==', loggedInUserId),
+    where('following', 'array-contains', profileUserId)
+  );
+  const result = await getDocs(q);
+
+  return result.docs.length > 0;
 }
 
 export async function getSuggestedProfiles(userId, following) {
@@ -124,6 +144,15 @@ export async function getPhotos(userId, following) {
   );
 
   return photosWithUserDetails;
+}
+
+export async function getPhotosByUserId(userId) {
+  const photosRef = collection(db, 'photos');
+  const q = query(photosRef, where('userId', '==', userId));
+  const result = await getDocs(q);
+
+  const photos = result.docs.map((photo) => ({ ...photo.data() }));
+  return photos;
 }
 
 export async function updatePhotoLikes(photoId, userId, isLiked) {
