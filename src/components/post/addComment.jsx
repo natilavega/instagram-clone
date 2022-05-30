@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
-import LoggedInUserContext from '../../context/loggedInUser';
 import PropTypes from 'prop-types';
+import LoggedInUserContext from '../../context/loggedInUser';
 import { addPhotoComment } from '../../services/firebase';
 
 const AddComment = ({ photoId, comments, setComments, commentInput }) => {

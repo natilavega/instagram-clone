@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
-import UserContext from '../context/user';
-import FirebaseContext from '../context/firebase';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
+import UserContext from '../context/user';
+import FirebaseContext from '../context/firebase';
+import { Auth } from '../services/firebase';
 
 const Header = () => {
-  const { user } = useContext(UserContext);
-  const {
-    Auth: { auth, signOut },
-  } = useContext(FirebaseContext);
   const navigate = useNavigate();
+
+  const { user } = useContext(UserContext);
+  const { auth } = useContext(FirebaseContext);
 
   return (
     <header className='h-16 bg-white border-b border-gray-primary mb-8'>
@@ -50,12 +50,12 @@ const Header = () => {
                   type='button'
                   title='Sign Out'
                   onClick={() => {
-                    signOut(auth);
+                    Auth.signOut(auth);
                     navigate(ROUTES.LOGIN);
                   }}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter') {
-                      signOut(auth);
+                      Auth.signOut(auth);
                       navigate(ROUTES.LOGIN);
                     }
                   }}

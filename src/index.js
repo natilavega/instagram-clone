@@ -4,11 +4,11 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import './index.css';
 import App from './App';
 import FirebaseContext from './context/firebase';
-import { Auth, Firestore } from './lib/firebase';
+import { auth, db } from './lib/firebase';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <FirebaseContext.Provider value={{ Auth, Firestore }}>
+  <FirebaseContext.Provider value={{ auth, db }}>
     <App />
   </FirebaseContext.Provider>
 );

@@ -1,24 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signOut,
-} from 'firebase/auth';
-import {
-  getFirestore,
-  collection,
-  doc,
-  query,
-  where,
-  limit,
-  getDocs,
-  setDoc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-} from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 // Firebase config
 const config = {
@@ -34,26 +16,5 @@ const config = {
 const app = initializeApp(config);
 
 // init services
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-export const Auth = {
-  auth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signOut,
-};
-export const Firestore = {
-  db,
-  collection,
-  doc,
-  query,
-  where,
-  limit,
-  getDocs,
-  setDoc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-};
+export const auth = getAuth(app);
+export const db = getFirestore(app);

@@ -1,8 +1,11 @@
-import { Auth, Firestore } from '../lib/firebase';
-
-const { auth, createUserWithEmailAndPassword, updateProfile } = Auth;
-const {
-  db,
+import { auth, db } from '../lib/firebase';
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signOut,
+} from 'firebase/auth';
+import {
   collection,
   doc,
   query,
@@ -13,7 +16,12 @@ const {
   updateDoc,
   arrayUnion,
   arrayRemove,
-} = Firestore;
+} from 'firebase/firestore';
+
+export const Auth = {
+  signInWithEmailAndPassword,
+  signOut,
+};
 
 export async function doesUsernameExist(username) {
   const usersRef = collection(db, 'users');

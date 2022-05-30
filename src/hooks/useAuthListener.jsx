@@ -5,9 +5,7 @@ const useAuthListener = () => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('authUser'))
   );
-  const {
-    Auth: { auth },
-  } = useContext(FirebaseContext);
+  const { auth } = useContext(FirebaseContext);
 
   useEffect(() => {
     const listener = auth.onAuthStateChanged((authUser) => {

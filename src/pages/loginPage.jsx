@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import FirebaseContext from '../context/firebase';
+import { Auth } from '../services/firebase';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const {
-    Auth: { auth, signInWithEmailAndPassword },
-  } = useContext(FirebaseContext);
+
+  const { auth } = useContext(FirebaseContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +23,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await Auth.signInWithEmailAndPassword(auth, email, password);
       navigate(ROUTES.DASHBOARD);
     } catch (error) {
       setPassword('');

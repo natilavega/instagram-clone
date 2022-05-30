@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
-import LoggedInUserContext from '../../context/loggedInUser';
 import PropTypes from 'prop-types';
+import LoggedInUserContext from '../../context/loggedInUser';
 import { updatePhotoLikes } from '../../services/firebase';
 
 const Actions = ({ photoId, totalLikes, likedPhoto, handleFocus }) => {
