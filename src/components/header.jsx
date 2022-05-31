@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import UserContext from '../context/user';
 import FirebaseContext from '../context/firebase';
-import { Auth } from '../services/firebase';
+import { Auth, getUserById } from '../services/firebase';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,9 +11,17 @@ const Header = () => {
   const { user } = useContext(UserContext);
   const { auth } = useContext(FirebaseContext);
 
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      getUserById(user.uid).then((result) => setUsername(result.username));
+    }
+  }, [user]);
+
   return (
-    <header className='h-16 bg-white border-b border-gray-primary mb-8'>
-      <div className='container mx-auto max-w-screen-md h-full'>
+    <header className='h-14 bg-white border-b border-gray-primary mb-6'>
+      <div className='container mx-auto px-2 max-w-screen-md h-full'>
         <div className='flex justify-between h-full'>
           <div className='text-gray-700 text-center flex items-center align-items cursor-pointer'>
             <h1 className='flex justify-center w-full'>
@@ -29,23 +37,6 @@ const Header = () => {
           <div className='text-gray-700 text-center flex items-center align-items'>
             {user ? (
               <>
-                <Link to={ROUTES.DASHBOARD} aria-label='Dashboard'>
-                  <svg
-                    className='w-8 mr-6 text-black-light cursor-pointer'
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    stroke='currentColor'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth={2}
-                      d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
-                    />
-                  </svg>
-                </Link>
-
                 <button
                   type='button'
                   title='Sign Out'
@@ -61,7 +52,7 @@ const Header = () => {
                   }}
                 >
                   <svg
-                    className='w-8 mr-6 text-black-light cursor-pointer'
+                    className='w-6 mr-3 text-black-light cursor-pointer'
                     xmlns='http://www.w3.org/2000/svg'
                     fill='none'
                     viewBox='0 0 24 24'
@@ -77,11 +68,11 @@ const Header = () => {
                 </button>
                 {user && (
                   <div className='flex items-center cursor-pointer'>
-                    <Link to={`/p/${user?.username}`}>
+                    <Link to={`/p/${username}`}>
                       <img
-                        className='rounded-full h-8 w-8 flex'
-                        src={`/images/avatars/${user?.username}.jpg`}
-                        alt={`${user?.username} profile`}
+                        className='rounded-full h-6 w-6 flex'
+                        src={`/images/avatars/${username}.jpg`}
+                        alt={`${username} profile`}
                         onError={(e) => {
                           e.target.src = '/images/avatars/default.png';
                         }}

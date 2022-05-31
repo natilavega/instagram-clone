@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getPhotosByUserId } from '../../services/firebase';
 import Header from './header';

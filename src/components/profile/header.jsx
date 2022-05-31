@@ -47,11 +47,11 @@ const Header = ({
   };
 
   return (
-    <div className='grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-md'>
+    <div className='grid grid-cols-3 gap-4 justify-between mx-auto md:max-w-screen-md'>
       <div className='container flex justify-center items-center'>
         {profileUsername ? (
           <img
-            className='rounded-full h-40 w-40 flex'
+            className='flex rounded-full h-16 w-16 md:h-32 md:w-32'
             alt={`${fullName} profile picture`}
             src={`/images/avatars/${profileUsername}.jpg`}
             onError={(e) => {
@@ -64,7 +64,7 @@ const Header = ({
       </div>
       <div className='flex items-center justify-center flex-col col-span-2'>
         <div className='container flex items-center'>
-          <p className='text-2xl mr-4'>{profileUsername}</p>
+          <p className='text-xl md:text-2xl mr-4'>{profileUsername}</p>
           {activeBtnFollow && (
             <button
               className='bg-blue-medium font-bold text-sm rounded text-white w-20 h-8'
@@ -80,21 +80,29 @@ const Header = ({
             </button>
           )}
         </div>
-        <div className='container flex mt-4'>
+        <div className='container flex mt-4 text-xs md:text-base'>
           {!followers || !following ? (
             <Skeleton count={1} width={500} height={24} />
           ) : (
             <>
-              <p className='mr-10'>
-                <span className='font-bold'>{photosCount}</span> photos
+              <p className='mr-4 md:mr-8 text-center'>
+                <span className='font-bold text-xs md:text-base'>
+                  {photosCount}
+                </span>{' '}
+                photos
               </p>
-              <p className='mr-10'>
-                <span className='font-bold'>{followerCount}</span>
+              <p className='mr-4 md:mr-8 text-center'>
+                <span className='font-bold text-xs md:text-base'>
+                  {followerCount}
+                </span>
                 {` `}
                 {followerCount === 1 ? `follower` : `followers`}
               </p>
-              <p className='mr-10'>
-                <span className='font-bold'>{following?.length}</span> following
+              <p className='mr-4 md:mr-8 text-center'>
+                <span className='font-bold text-xs md:text-base'>
+                  {following?.length}
+                </span>{' '}
+                following
               </p>
             </>
           )}

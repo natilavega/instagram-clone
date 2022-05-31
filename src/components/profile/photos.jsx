@@ -3,8 +3,8 @@ import Skeleton from 'react-loading-skeleton';
 
 const Photos = ({ photos }) => {
   return (
-    <div className='h-16 border-t border-gray-primary mt-12 pt-4'>
-      <div className='grid grid-cols-3 gap-8 mt-4 mb-12'>
+    <div className='h-16 border-t border-gray-primary mt-12 md:p-4'>
+      <div className='grid grid-cols-3 gap-1 md:gap-6 mt-4'>
         {!photos ? (
           new Array(12)
             .fill(0)
@@ -50,11 +50,17 @@ const Photos = ({ photos }) => {
             </div>
           ))
         ) : (
-          <p className='text-center text-2xl'>No Posts Yet</p>
+          <p className='col-span-3 text-center text-xl md:text-2xl'>
+            No Posts Yet
+          </p>
         )}
       </div>
     </div>
   );
+};
+
+Photos.propTypes = {
+  photos: PropTypes.array.isRequired,
 };
 
 export default Photos;

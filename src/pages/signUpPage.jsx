@@ -38,14 +38,14 @@ const SignUpPage = () => {
 
   return (
     <div className='container flex mx-auto max-w-screen-md items-center h-screen'>
-      <div className='flex w-2/4'>
+      <div className='hidden lg:flex lg:w-2/4'>
         <img
           src='/images/iphone-with-profile.jpg'
           alt='iPhone with Instagram app'
         />
       </div>
-      <div className='flex flex-col w-2/5'>
-        <div className='flex flex-col items-center bg-white p-4 border border-gray-primary mb-4 rounded'>
+      <div className='mx-auto flex flex-col sm:w-3/5 md:w-2/5'>
+        <div className='flex flex-col items-center mb-4 p-4 md:bg-white md:border md:border-gray-primary rounded'>
           <h1 className='flex justify-center w-full'>
             <img
               src='/images/logo.png'
@@ -92,7 +92,7 @@ const SignUpPage = () => {
             <button
               disabled={isInvalid}
               type='submit'
-              className={`bg-blue-medium text-white w-full rounded h-8 font-bold
+              className={`bg-blue-medium text-white w-full rounded h-12 font-bold
             ${isInvalid && 'opacity-50'}`}
             >
               Sign Up
@@ -100,7 +100,7 @@ const SignUpPage = () => {
           </form>
         </div>
 
-        <div className='flex justify-center items-center flex-col w-full bg-white p-4 rounded border border-gray-primary'>
+        <div className='flex justify-center items-center flex-col w-full p-4 md:bg-white md:border md:border-gray-primary rounded'>
           <p className='text-sm'>
             Have an account?{` `}
             <Link to={ROUTES.LOGIN} className='font-bold text-blue-medium'>

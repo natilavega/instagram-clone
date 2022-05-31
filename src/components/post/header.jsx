@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Header = ({ username }) => {
   return (
-    <div className='flex border-b border-gray-primary h-4 p-4 py-8'>
+    <div className='flex border-b border-gray-primary p-4'>
       <div className='flex items-center'>
         <Link to={`/p/${username}`} className='flex items-center'>
           <img

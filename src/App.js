@@ -8,6 +8,7 @@ import {
 import * as ROUTES from './constants/routes';
 import UserContext from './context/user';
 import useAuthListener from './hooks/useAuthListener';
+import Loader from './components/loader';
 
 const LoginPage = lazy(() => import('./pages/loginPage'));
 const SignUpPage = lazy(() => import('./pages/signUpPage'));
@@ -21,7 +22,7 @@ const App = () => {
   return (
     <UserContext.Provider value={{ user }}>
       <Router>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route
               path={ROUTES.DASHBOARD}
