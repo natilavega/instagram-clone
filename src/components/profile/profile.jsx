@@ -6,7 +6,9 @@ import Photos from './photos';
 
 const UserProfile = ({ user }) => {
   const [photosCollection, setPhotosCollection] = useState([]);
-  const [followerCount, setFollowerCount] = useState(user.followers.length);
+  const [followerCount, setFollowerCount] = useState(
+    user.followers.length || 0
+  );
 
   useEffect(() => {
     getProfilePhotos();
