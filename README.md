@@ -1,33 +1,55 @@
-# The Gram
+# Instagram Clone
 
-Clone of the web version of [Instagram](https://www.instagram.com/).
+Clone of the web version of Instagram developed in React.js with Tailwind CSS styling and Firebase services. This application is designed to be responsive and brings back the nostalgic feel of the classic Instagram interface.
 
-## Features
-- Login and sign up with an email and password. It uses the Firebase authentication service.
-- Dashboard section with posts from followed accounts. Only accessible to registered users.
-- Suggested accounts to follow.
-- User profile with publications made. Available for unregistered users too.
-- Firebase real-time database.
+### Features
 
-## About
-The Gram is a clone of the web version of Instagram. It maintains the style of an already old version of Instagram. The design is responsive.
+- **Authentication:**
+  - Users can log in or sign up using their email and password.
+  - Firebase authentication service is utilized for secure user authentication.
 
-The live version has images and profiles preloaded. In this first version, it is only possible to browse existing posts and follow/unfollow other accounts.
+- **Dashboard:**
+  - Registered users have access to a dashboard displaying posts from accounts they follow.
+  - Registered users can like and comment on posts.
+  - New users are greeted with suggested accounts to follow.
 
-New users can register with email and password. At the moment, it is not possible to publish new images.
+- **User Profiles:**
+  - User profiles showcase the publications made by the user.
+  - Profiles are accessible to both registered and unregistered users.
 
-## Development
-### React
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Firebase Real-time Database:**
+  - The application uses Firebase's real-time database to ensure seamless updates and interactions.
 
-### Create React App
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Limitations in the First Version
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Currently, users can only browse existing posts and follow/unfollow other accounts.
+- Users can register but cannot publish new images in this version.
+  
 
-### Firebase
-Learn more about the realtime database, authentication, and other Firebase services in the [Firebase documentation](https://firebase.google.com/docs).
+### Getting Started
 
+1. **Clone the Repository:**
+   
+     ```bash
+     git clone https://github.com/natilavega/instagram-clone.git
 
-## Acknowledgments
-Based on a tutorial by [Karl Hadwen](https://github.com/karlhadwen). You can [watch the video](https://www.youtube.com/watch?v=AKeaaa8yAAk) on his YouTube channel.
+2. **Set Up Firebase:**
+   
+    - Create a Firebase project and set up authentication and real-time database.
+    - Update the Firebase configuration in your application.
+
+3. **Run the Application:**
+   
+    ```bash
+    npm start
+    ```
+  
+    The application will be available at http://localhost:3000.
+
+### Contributing
+Contributions are welcome! If you find issues or have suggestions, please open an issue or submit a pull request.
+
+### Acknowledgements
+- [Instagram](https://www.instagram.com/) for the inspiration.
+- [Firebase](https://firebase.google.com/) for providing authentication and real-time database services.
+- [Karl Hadwel](https://www.youtube.com/@CognitiveSurge) for his educational content on YouTube.
